@@ -50,3 +50,13 @@ werden nicht übernommen oder überschrieben.
 Nach jedem Apply `terraform plan -detailed-exitcode` ausführen: 0 bedeutet kein Drift,
 2 geplante Änderungen, 1 Fehler. ESO-Store und vorhandene ExternalSecrets zusätzlich
 auf Ready/SecretSynced prüfen. Eine neue Mandantengruppe allein legt keine Benutzer an.
+
+## Verifizierte State-Sicherung
+
+Nach der Übernahme liegt eine SOPS-verschlüsselte, durch Entschlüsselung geprüfte
+State-Kopie unter `/home/tanzu/manifest/backups/platform-rollout-2026-10-10/tenant-state.sops.json`.
+Die passende neue Age-Identität ist getrennt unter
+`/home/tanzu/manifest/.local-recovery-keys/platform-20261010.agekey` geschützt abgelegt.
+Die zuvor konfigurierte SOPS-Identität war ungültig und wurde nicht verändert.
+Für die neue Sicherung die neue Identität ausdrücklich per SOPS_AGE_KEY_FILE wählen.
+Ein lokales Backup ersetzt kein Off-host-Backup; Schlüssel separat sichern.
