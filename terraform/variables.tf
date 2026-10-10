@@ -1,0 +1,10 @@
+variable "rancher_url" { default = "https://rancher.berger.ph" }
+variable "keycloak_url" { default = "https://idp.berger.ph" }
+variable "harbor_url" { default = "https://harbor-ha.berger.ph" }
+variable "openbao_url" { default = "https://openbao.berger.ph" }
+variable "realm" { default = "berger" }
+variable "cluster_id" { default = "c-m-prkskj2p" }
+variable "kubeconfig_path" { default = "~/.kube/config" }
+variable "kube_context" { default = "rke2-cluster1" }
+variable "kubernetes_host" { default = "https://192.168.1.23:6443" }
+variable "kubernetes_ca_file" { default = "../config/cluster1-ca.crt" }

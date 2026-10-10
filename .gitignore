@@ -1,0 +1,13 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+.env
+.env.*
+*.secret.*
+*.pem
+*.key
+__pycache__/
+*.pyc
