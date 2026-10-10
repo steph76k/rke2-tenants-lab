@@ -1,6 +1,10 @@
 terraform {
-  required_version = ">= 1.3.0, < 2.0.0"
+  required_version = ">= 1.10.0, < 2.0.0"
   required_providers {
+    opensearch = {
+      source  = "opensearch-project/opensearch"
+      version = "2.6.0"
+    }
     rancher2 = {
       source  = "rancher/rancher2"
       version = "15.1.2"

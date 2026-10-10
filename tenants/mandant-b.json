@@ -1,0 +1,11 @@
+{
+  "display_name": "Mandant B",
+  "environments": [
+    "dev",
+    "test",
+    "prod"
+  ],
+  "project_role": "project-member",
+  "harbor_enabled": true,
+  "harbor_storage_gib": 10
+}

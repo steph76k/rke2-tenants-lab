@@ -1,5 +1,5 @@
 locals {
-  tenants = { for f in fileset("${path.module}/../tenants", "*.json") : trimsuffix(f, ".json") => jsondecode(file("${path.module}/../tenants/${f}")) }
+  tenants = { for f in fileset("${path.module}/../tenants", "*.json") : trimsuffix(f, ".json") => jsondecode(file("${path.module}/../tenants/${f}")) if trimsuffix(f, ".json") == var.tenant_slug }
 }
 module "tenant" {
   for_each           = local.tenants

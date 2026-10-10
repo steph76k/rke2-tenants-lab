@@ -20,3 +20,15 @@ provider "vault" {
   skip_child_token       = true
   skip_get_vault_version = true
 }
+
+provider "opensearch" {
+  url               = var.opensearch_url
+  host_override     = var.opensearch_tls_host
+  cacert_file       = var.opensearch_ca_file
+  username          = "admin"
+  password          = var.opensearch_password
+  insecure          = false
+  healthcheck       = false
+  sniff             = false
+  sign_aws_requests = false
+}

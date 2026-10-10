@@ -1,6 +1,6 @@
 # Betrieb und Voraussetzungen
 
-Terraform >= 1.3, < 2.0; getestet mit 1.3.9. Die fixierten Provider unterstützen die
+Terraform >= 1.10, < 2.0; aktueller Remote-State-Lauf geprüft mit 1.14.7. Die fixierten Provider unterstützen die
 hier genutzten APIs. `hashicorp/vault` wird für OpenBao 2.7.0 verwendet, mit ausgeschalteter
 Vault-Versionserkennung und ohne Erzeugung eines Child-Tokens. TLS-Prüfung bleibt aktiv.
 
@@ -27,6 +27,29 @@ Der gemeinsame ClusterRole `openbao-tokenreviewer` muss bereits vorhanden sein u
 nur `create` auf `authentication.k8s.io/tokenreviews` erlauben. ESO und seine v1-CRDs,
 Rancher/OIDC, Realm berger, Harbor und OpenBao sind Plattform-Voraussetzungen.
 
+## OpenSearch und Lab-Runner
+
+Für administrative Terraform-Läufe einen lokalen TLS-Tunnel öffnen:
+
+```bash
+kubectl --context=rancher --server=https://rancher.berger.ph/k8s/clusters/c-44q9v \
+  port-forward -n opensearch svc/opensearch-cluster-master 19200:9200
+```
+
+Der OpenSearch-Provider prüft die öffentliche CA und den Zertifikatsnamen
+`opensearch-cluster-master.opensearch.svc.cluster.local`; TLS wird nicht abgeschaltet.
+`scripts/lab-terraform.py` liest die bestehenden Lab-Zugänge aus Kubeconfig, OpenBao
+und der Keycloak-Bootstrap-Konfiguration in den Prozessspeicher. Dieser Helfer ist
+für bestehende Plattformadministratoren vorgesehen, nicht für Mandantenbenutzer.
+`TERRAFORM_BIN` muss auf eine passende installierte Terraform-Version zeigen.
+Die Systemversion 1.3.9 reicht für S3-Locking nicht aus.
+
+Alternativ `scripts/terraform-tenant.py` verwenden und alle Provider- sowie Backend-
+Variablen extern bereitstellen. Zusätzlich benötigt: `TF_VAR_opensearch_password`,
+`TF_VAR_opensearch_ca_file`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
+`AWS_SSE_CUSTOMER_KEY`, `AWS_CA_BUNDLE`. Backend-Zugänge und Recovery siehe
+[remote-state.md](remote-state.md). Keine gemeinsamen Root-Zugänge an Mandanten ausgeben.
+
 ## Import und Recovery
 
 Die geprüften Import-IDs von Mandant A stehen in [validation.md](validation.md).
@@ -51,7 +74,7 @@ Nach jedem Apply `terraform plan -detailed-exitcode` ausführen: 0 bedeutet kein
 2 geplante Änderungen, 1 Fehler. ESO-Store und vorhandene ExternalSecrets zusätzlich
 auf Ready/SecretSynced prüfen. Eine neue Mandantengruppe allein legt keine Benutzer an.
 
-## Verifizierte State-Sicherung
+## Historische Sicherung vor der Remote-State-Migration
 
 Nach der Übernahme liegt eine SOPS-verschlüsselte, durch Entschlüsselung geprüfte
 State-Kopie unter `/home/tanzu/manifest/backups/platform-rollout-2026-10-10/tenant-state.sops.json`.
@@ -60,3 +83,6 @@ Die passende neue Age-Identität ist getrennt unter
 Die zuvor konfigurierte SOPS-Identität war ungültig und wurde nicht verändert.
 Für die neue Sicherung die neue Identität ausdrücklich per SOPS_AGE_KEY_FILE wählen.
 Ein lokales Backup ersetzt kein Off-host-Backup; Schlüssel separat sichern.
+
+Aktuelle Sicherungen beider Mandanten und das Recovery-Verfahren stehen in
+[remote-state.md](remote-state.md). Die obigen Angaben zur ersten Sicherung sind historisch.
