@@ -6,6 +6,9 @@ Kubernetes-Namespaces, optional ein privates Harbor-Projekt sowie den isolierten
 OpenBao-Namespace mit KV-v2, Kubernetes-Authentifizierung und ESO-Anbindung.
 Die zentrale Plattform bleibt im separaten Repository `rke2-platform-lab`.
 
+Lokaler Pfad: `/home/tanzu/manifest/fleet/rke2-tenants-lab`.
+Git-Remote: `git@github.com:steph76k/rke2-tenants-lab.git`.
+
 ## Stand 10.10.2026
 
 Mandant A wurde übernommen, nicht neu erstellt. Bestehendes Rancher-Projekt
@@ -55,5 +58,6 @@ Namespaces und OpenBao-Datenspeicher. Entfernen der gesamten Modulkonfiguration 
 diesen Schutz entfernen; deshalb jeden Plan auf Löschungen prüfen. Offboarding erfordert
 einen eigenen, datenbewussten Ablauf.
 
-Das lokale Git-Repository hat noch kein Remote. Es wurde keine GitHub-Adresse erfunden
-und kein Terraform-State veröffentlicht.
+Das bestehende Git-Repository enthält auch die bisherigen lokalen Commits.
+Der lokale Terraform-State wurde beim Umzug mitgenommen und bleibt von Git ausgeschlossen.
+Das Git-Remote ist kein Terraform-State-Backend.
