@@ -1,0 +1,18 @@
+{
+  "uiLogoutRoute": true,
+  "rancherAndKeycloakLogout": [
+    {
+      "host": "rancher.berger.ph",
+      "path": "/v1/logout",
+      "http": 200
+    },
+    {
+      "host": "idp.berger.ph",
+      "path": "/realms/berger/protocol/openid-connect/logout",
+      "http": 302
+    }
+  ],
+  "keycloakSessionsRemaining": 0,
+  "freshLoginRequiresCredentials": true,
+  "oldRancherTokenHttp": 401
+}

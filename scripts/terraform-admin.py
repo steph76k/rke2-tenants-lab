@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the shared administrative Terraform state for all declared tenants.
 Set AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SSE_CUSTOMER_KEY, AWS_CA_BUNDLE
-and provider credentials outside Git. Set TERRAFORM_BIN to select Terraform >=1.10.
+and provider credentials outside Git. Set TERRAFORM_BIN to select Terraform >=1.11.
 """
 import argparse,os,re,subprocess
 from pathlib import Path

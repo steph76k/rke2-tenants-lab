@@ -22,12 +22,13 @@ if not env.get('RANCHER_TOKEN_KEY'):
 if not env.get('KEYCLOAK_PASSWORD'):
  k=read(['kubectl','--context=rke2-cluster1','get','sts','keycloak','-n','keycloak','-o','json']);e={x['name']:x.get('value') for x in k['spec']['template']['spec']['containers'][0]['env']};env['KEYCLOAK_USER']=e['KC_BOOTSTRAP_ADMIN_USERNAME'];env['KEYCLOAK_PASSWORD']=e['KC_BOOTSTRAP_ADMIN_PASSWORD']
 env.setdefault('HARBOR_USERNAME','admin');env.setdefault('HARBOR_PASSWORD',kv('harbor/credentials')['admin-password'])
+env['TF_VAR_harbor_oidc_client_secret']=kv('oidc/afi-harbor')['client_secret']
 if not env.get('VAULT_TOKEN'):env['VAULT_TOKEN']=(Path.home()/'.vault-token').read_text().strip()
 with tempfile.TemporaryDirectory(prefix='afi-terraform-ca-') as d:
  ca=Path(d)/'ca.pem';ca.write_text(Path('/etc/ssl/certs/ca-certificates.crt').read_text()+(root/'config/opensearch-ca.crt').read_text());env['SSL_CERT_FILE']=str(ca)
  cmd=['python3',str(root/'scripts/terraform-admin.py'),a.command,*a.arguments]
  r=subprocess.run(cmd,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
  output=r.stdout
- for k in ['AWS_SECRET_ACCESS_KEY','AWS_SSE_CUSTOMER_KEY','RANCHER_TOKEN_KEY','KEYCLOAK_PASSWORD','HARBOR_PASSWORD','VAULT_TOKEN','TF_VAR_opensearch_password']:
+ for k in ['AWS_SECRET_ACCESS_KEY','AWS_SSE_CUSTOMER_KEY','RANCHER_TOKEN_KEY','KEYCLOAK_PASSWORD','HARBOR_PASSWORD','VAULT_TOKEN','TF_VAR_opensearch_password','TF_VAR_harbor_oidc_client_secret']:
   output=output.replace(env[k],'[REDACTED]')
  print(output,end='');raise SystemExit(r.returncode)

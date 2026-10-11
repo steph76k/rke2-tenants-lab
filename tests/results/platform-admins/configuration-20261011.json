@@ -1,0 +1,11 @@
+{
+  "rancherChangedFields": [
+    "endSessionEndpoint",
+    "logoutAllEnabled",
+    "logoutAllForced"
+  ],
+  "existingRancherClientMappersScopesAndRedirectsPreserved": true,
+  "openbaoRoleAndPolicyPreserved": true,
+  "adminMemberOfAllFiveGroups": true,
+  "harborAdminAlias": "berger-admin"
+}

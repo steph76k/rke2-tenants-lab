@@ -1,6 +1,6 @@
 # Remote-State und Wiederherstellung
 
-Terraform >= 1.10 (geprüft: 1.14.7) verwendet den vorhandenen On-Premises-MinIO-Dienst
+Terraform >= 1.11 (geprüft: 1.14.7) verwendet den vorhandenen On-Premises-MinIO-Dienst
 auf Cluster 2. GitHub enthält nur Konfiguration und besitzt kein State-Locking.
 GitLab HTTP-State wäre geeignet, würde aber eine zusätzliche GitLab-Installation
 erfordern. MinIO/S3 wurde einschließlich Locking mit zwei echten Terraform-Prozessen

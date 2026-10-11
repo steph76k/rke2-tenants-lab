@@ -1,0 +1,21 @@
+{
+  "sessions": [
+    {
+      "identity": "platform-admin",
+      "rancherClusterRbacAdministration": true,
+      "harborConfigurationHttp": 200,
+      "opensearchSecurityApiHttp": 200,
+      "argocdProjectUpdateHttp": 200,
+      "openbaoPlatformRoleHttp": 200
+    },
+    {
+      "identity": "tenant-admin",
+      "rancherClusterRbacAdministration": false,
+      "harborConfigurationHttp": 403,
+      "opensearchSecurityApiHttp": 403,
+      "argocdProjectUpdateHttp": 403,
+      "openbaoPlatformRoleHttp": 400
+    }
+  ],
+  "temporaryIdentitiesRemoved": true
+}

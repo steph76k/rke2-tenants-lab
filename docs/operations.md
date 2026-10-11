@@ -1,6 +1,6 @@
 # Betrieb und Voraussetzungen
 
-Terraform >= 1.10, < 2.0; aktueller Remote-State-Lauf geprüft mit 1.14.7. Die fixierten Provider unterstützen die
+Terraform >= 1.11, < 2.0; aktueller Remote-State-Lauf geprüft mit 1.14.7. Die fixierten Provider unterstützen die
 hier genutzten APIs. `hashicorp/vault` wird für OpenBao 2.7.0 verwendet, mit ausgeschalteter
 Vault-Versionserkennung und ohne Erzeugung eines Child-Tokens. TLS-Prüfung bleibt aktiv.
 
@@ -13,6 +13,7 @@ Authentifizierung nur über Prozessumgebung oder interaktive, geschützte lokale
 | `HARBOR_USERNAME`, `HARBOR_PASSWORD` | Zugang zum Anlegen/Verwalten der Mandantenprojekte |
 | `VAULT_TOKEN` | OpenBao-Verwaltungszugang für Mandanten-Namespaces |
 | `SSL_CERT_FILE` | CA-Bundle aus System-CAs plus öffentlicher Lab-CA für Harbor |
+| `TF_VAR_harbor_oidc_client_secret` | Bestehendes OIDC-Secret für Harbors Write-only-Attribut; Lab-Runner liest es aus OpenBao |
 
 Keine Secret-Werte in `.tfvars`, Shell-History oder Git schreiben. Für das Lab wurden
 die bestehenden Administratorzugänge nur im Prozessspeicher verwendet. Für Team-/CI-Betrieb

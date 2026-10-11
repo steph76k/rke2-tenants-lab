@@ -28,10 +28,16 @@ Ein Benutzer kann mehrere ausdrücklich zugewiesene Gruppen haben. Logleser dür
 keine Logs schreiben. Plattformadministratoren stellen die Index-Patterns bereit.
 Kein Mandanten-Modul verwaltet globale Adminrechte oder bestehende Benutzerkonten.
 
+Die fünf dienstbezogenen Plattform-Admin-Gruppen und die additive Mitgliedschaft
+von `berger/admin` verwaltet das Terraform-Root-Modul separat:
+[Plattformadministration](docs/platform-admins.md).
+Auch der gemeinsame [Rancher-/Keycloak-Logout](docs/rancher-oidc-logout.md)
+wird über Terraform konfiguriert.
+
 ## Neuen Mandanten hinzufügen
 
 Voraussetzungen und Zugänge: [Betrieb](docs/operations.md), [Remote-State](docs/remote-state.md).
-Terraform **>= 1.10** ist wegen S3-Lockdateien erforderlich; getestet wird mit 1.14.7.
+Terraform **>= 1.11** ist wegen Write-only-OIDC-Secrets erforderlich; getestet wird mit 1.14.7.
 
 ```bash
 python3 scripts/new-tenant.py mandant-c --name 'Mandant C'

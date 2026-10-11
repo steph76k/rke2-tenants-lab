@@ -129,8 +129,8 @@ resource "kubernetes_config_map_v1" "argocd_rbac" {
   data = {
     "policy.default" = "role:none"
     "scopes"         = "[groups]"
-    "policy.csv" = join("\n", flatten([for slug in keys(local.tenants) : [for role in ["admins", "developers"] :
+    "policy.csv" = join("\n", concat(flatten([for slug in keys(local.tenants) : [for role in ["admins", "developers"] :
       "p, ${slug}-${role}, projects, get, ${slug}, allow"
-    ]]))
+    ]]), ["g, ${keycloak_group.platform_admins["argocd"].name}, role:admin"]))
   }
 }
