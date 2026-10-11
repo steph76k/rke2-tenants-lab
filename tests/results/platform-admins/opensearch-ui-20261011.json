@@ -1,0 +1,32 @@
+[
+  {
+    "group": "opensearch-platform-admins",
+    "oidcLogin": true,
+    "roles": [
+      "security_rest_api_access",
+      "all_access"
+    ],
+    "initialTenant": "",
+    "globalPatterns": {
+      "afi-platform-all": "*",
+      "afi-platform-logs": "logs-*"
+    },
+    "bothTenantsAndPlatformLogsReadable": true,
+    "globalDiscoverRendered": true,
+    "keycloakSessionEnded": true,
+    "nextLoginRequiresCredentials": true
+  },
+  {
+    "group": "mandant-a-logs-readers",
+    "oidcLogin": true,
+    "roles": [
+      "mandant-a-logs-read"
+    ],
+    "initialTenant": "",
+    "globalSavedObjectDeniedHttp": 403,
+    "ownSavedObjectHttp": 200,
+    "foreignAndPlatformLogsDenied": true,
+    "keycloakSessionEnded": true,
+    "nextLoginRequiresCredentials": true
+  }
+]

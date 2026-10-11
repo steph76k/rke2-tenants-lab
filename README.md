@@ -33,6 +33,8 @@ von `berger/admin` verwaltet das Terraform-Root-Modul separat:
 [Plattformadministration](docs/platform-admins.md).
 Auch der gemeinsame [Rancher-/Keycloak-Logout](docs/rancher-oidc-logout.md)
 wird über Terraform konfiguriert.
+[OpenSearch: globale Indexansichten und Logout](docs/opensearch-platform-ui.md)
+beschreibt die Plattformansicht für Administratoren.
 
 ## Neuen Mandanten hinzufügen
 
