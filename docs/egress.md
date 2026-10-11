@@ -47,8 +47,9 @@ Fleet/Ansible dürfen keine mandantenspezifischen Egress-Policies oder Node-Adre
 parallel verwalten. Mandantenspezifische Policies und Adressen haben ausschließlich Terraform als Eigentümer.
 
 Worker-1-Pods verwenden das Gateway auf Worker 1; alle übrigen Quell-Nodes das
-Gateway auf Worker 2. Selektiert werden tatsächliche Namespace-Namen über Ciliums
-internes Namespace-Label. Bei Ausfall eines Workers müssen Anwendungen auf dem
+Gateway auf Worker 2. Selektiert wird das geschützte Rancher-Projektlabel über Ciliums
+Namespace-Identität `io.cilium.k8s.namespace.labels.field.cattle.io/projectId`.
+Damit erhalten auch zusätzliche Self-Service-Namespaces automatisch die Mandanten-IP. Bei Ausfall eines Workers müssen Anwendungen auf dem
 anderen Worker neu gestartet werden; die zweite IP muss extern ebenfalls erlaubt
 sein. Bestehende Verbindungen und die ursprüngliche IP werden nicht übernommen.
 HostNetwork-Pods und die Verzögerung der Policy-Aktivierung bei neuen Pods bleiben
@@ -62,8 +63,8 @@ Rancher-Management-Cluster. Der Betreiber hat dies am 11.10.2026 gesetzt;
 `status.appliedEnableNetworkPolicy` und die Networking-Annotation sind ebenfalls true.
 Das Provisioning-Objekt ist bei diesem importierten Cluster nicht die maßgebliche Quelle.
 
-Rancher erzeugt `np-default` und `hn-nodes` in den Projekt-Namespaces. Terraform
-ordnet neue Namespaces über die Rancher-Projektannotation zu; Rancher verwaltet die
+Rancher erzeugt `np-default` und `hn-nodes` in den Projekt-Namespaces. Terraform ordnet die Basis-Namespaces zu; zusätzliche Namespaces können Admins und
+Developers im eigenen Projekt erstellen. Rancher verwaltet die
 zugehörigen NetworkPolicies. Terraform erzeugt deshalb keine konkurrierenden Kopien.
 `np-default` erlaubt Ingress aus dem eigenen Projekt und dem System-Projekt.
 Nicht zugeordnete Infrastruktur-Namespaces werden dadurch nicht automatisch isoliert.

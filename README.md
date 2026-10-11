@@ -9,7 +9,8 @@ je eine pro Worker. Details und Ausfallgrenzen: [Egress](docs/egress.md).
 
 Lokaler Pfad: `/home/tanzu/manifest/fleet/rke2-tenants-lab`.
 Remote: `git@github.com:steph76k/rke2-tenants-lab.git`.
-Plattforminstallationen, Logging und OIDC-Clients bleiben in `rke2-platform-lab`.
+Plattforminstallationen, Logging-Collector und OIDC-Clients bleiben in `rke2-platform-lab`.
+Cluster-2-Logging-Routen und dynamische Mandanten-Selector verwaltet dieses Terraform-Repo.
 
 ## Mandanten und Rechte
 
@@ -49,10 +50,12 @@ bereits sicher bereitgestellte Umgebungsvariablen, etwa spätere eingeschränkte
 Die Reservierungen stehen dauerhaft in der Mandantendatei; bestehende Mandanten
 werden nicht neu nummeriert.
 
-Anschließend den administrativen Namespace-Katalog im Plattform-Repository ergänzen,
-Logging-Routen über Fleet ausrollen und mandantenspezifische Index-Patterns anlegen.
-Ohne diese Plattformschritte werden neue Namespace-Logs weiterhin ausschließlich im
-Plattformbereich gesammelt. Ein fehlender Katalogeintrag gibt keine fremden Logs frei.
+Logging-Routen entstehen beim Terraform-Apply automatisch. Die Plattformadministration
+legt weiterhin das Dashboards-Index-Pattern für den neuen Mandanten an.
+Admins und Developers können zusätzliche Namespaces mit dem Präfix `<mandant>-` direkt
+im eigenen Rancher-Projekt erstellen. Egress, Logging und ESO erfassen sie automatisch
+über geschützte Projektlabels; kein zusätzlicher Apply oder Namespace-Import nötig.
+Details: [Namespace Self-Service](docs/namespace-self-service.md).
 
 ## State und Lebenszyklus
 

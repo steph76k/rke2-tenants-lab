@@ -1,0 +1,38 @@
+{
+  "results": [
+    {
+      "tenant": "mandant-a",
+      "worker": "worker1",
+      "node": "rke2-cluster2-wk-1.berger.ph",
+      "expected": "192.168.1.200",
+      "observed": "192.168.1.200",
+      "passed": true
+    },
+    {
+      "tenant": "mandant-a",
+      "worker": "worker2",
+      "node": "rke2-cluster2-wk-2.berger.ph",
+      "expected": "192.168.1.201",
+      "observed": "192.168.1.201",
+      "passed": true
+    },
+    {
+      "tenant": "mandant-b",
+      "worker": "worker1",
+      "node": "rke2-cluster2-wk-1.berger.ph",
+      "expected": "192.168.1.202",
+      "observed": "192.168.1.202",
+      "passed": true
+    },
+    {
+      "tenant": "mandant-b",
+      "worker": "worker2",
+      "node": "rke2-cluster2-wk-2.berger.ph",
+      "expected": "192.168.1.203",
+      "observed": "192.168.1.203",
+      "passed": true
+    }
+  ],
+  "probePodsRemoved": true,
+  "receiverStopped": true
+}

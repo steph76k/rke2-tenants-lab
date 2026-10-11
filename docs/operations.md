@@ -68,8 +68,8 @@ wurden durch Terraform verändert. Bei State-Recovery diese Zuordnung und die Ac
 mit OpenBao vergleichen; nicht blind die Importbefehle wiederholen.
 
 Kubernetes-Namespaces behalten Rancher-eigene Metadaten durch gezielte `ignore_changes`.
-Das ClusterSecretStore-Manifest behält die deklarierte Namespace-Reihenfolge; dadurch
-war die Übernahme ohne `force_conflicts` möglich. Secretwerte und bestehende ExternalSecrets
+ClusterSecretStores wählen seit dem Namespace-Self-Service geschützte Projektlabels;
+zusätzliche Namespaces erfordern keine Änderung ihrer Konfiguration. Secretwerte und bestehende ExternalSecrets
 werden nicht übernommen oder überschrieben.
 
 Nach jedem Apply `terraform plan -detailed-exitcode` ausführen: 0 bedeutet kein Drift,
@@ -88,3 +88,12 @@ Ein lokales Backup ersetzt kein Off-host-Backup; Schlüssel separat sichern.
 
 Aktuelle Sicherungen des gemeinsamen Verwaltungs-States und das Recovery-Verfahren stehen in
 [remote-state.md](remote-state.md). Die obigen Angaben zur ersten Sicherung sind historisch.
+
+## Dynamische Namespaces und Logging
+
+Namensregeln, Projektlabel-Schutz, Zuständigkeiten und der geprüfte Ablauf stehen in
+[namespace-self-service.md](namespace-self-service.md). Terraform besitzt jetzt auch
+die Cluster-2-Logging-Routen; Fleet besitzt Collector und generischen Label-Schutz.
+Die einmalige Logging-Feldübernahme ist abgeschlossen. `logging_takeover` bleibt im
+Normalbetrieb `false`. Die zentrale Pufferbudget-Prüfung muss vor weiteren Mandanten
+berücksichtigt werden; zusätzliche Namespaces erzeugen keine eigenen Puffer.

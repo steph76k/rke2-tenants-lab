@@ -1,0 +1,49 @@
+{
+  "host": "opensearch-cluster-master.opensearch.svc.cluster.local",
+  "port": 9200,
+  "scheme": "https",
+  "ssl_verify": true,
+  "log_os_400_reason": true,
+  "verify_os_version_at_startup": false,
+  "default_opensearch_version": 3,
+  "request_timeout": "30s",
+  "bulk_message_request_threshold": "2097152",
+  "reload_connections": false,
+  "reload_on_failure": false,
+  "reconnect_on_error": true,
+  "ca_file": {
+    "mountFrom": {
+      "secretKeyRef": {
+        "name": "afi-opensearch-ingest",
+        "key": "ca.crt"
+      }
+    }
+  },
+  "user": "afi-ingest-rke2-cluster2",
+  "password": {
+    "valueFrom": {
+      "secretKeyRef": {
+        "name": "afi-opensearch-ingest",
+        "key": "password"
+      }
+    }
+  },
+  "logstash_format": true,
+  "logstash_prefix": "logs-rke2-cluster2-mandant-a",
+  "buffer": {
+    "type": "file",
+    "timekey": "1m",
+    "timekey_wait": "10s",
+    "timekey_use_utc": true,
+    "flush_mode": "interval",
+    "flush_interval": "10s",
+    "flush_thread_count": 2,
+    "chunk_limit_size": "2m",
+    "total_limit_size": "4g",
+    "queued_chunks_limit_size": 8192,
+    "retry_forever": true,
+    "retry_max_interval": "30s",
+    "overflow_action": "block",
+    "flush_at_shutdown": false
+  }
+}

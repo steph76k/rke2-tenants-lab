@@ -12,10 +12,12 @@ from pathlib import Path
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--kubeconfig', required=True)
 p.add_argument('--output', type=Path, required=True)
+p.add_argument('--namespace-map', type=Path, help='Optional JSON mapping tenant to dev/test test namespaces')
 a = p.parse_args()
 k = ['kubectl', '--kubeconfig=' + a.kubeconfig, '--request-timeout=30s']
 root = Path(__file__).resolve().parents[1]
 gateways = json.loads((root / 'config/egress-gateways.json').read_text())
+namespace_map = json.loads(a.namespace_map.read_text()) if a.namespace_map else {}
 run_id = secrets.token_hex(5)
 created, clients, servers, results = [], [], [], []
 
@@ -47,7 +49,7 @@ try:
         for worker, gateway in sorted(gateways.items()):
             for role, environment in [('server', 'dev'), ('client', 'test')]:
                 name = 'afi-isolation-' + worker + '-' + run_id
-                ns = tenant + '-' + environment
+                ns = namespace_map.get(tenant, {}).get(environment, tenant + '-' + environment)
                 shell = ('mkdir -p /tmp/www; echo ' + run_id +
                          ' > /tmp/www/index.html; exec httpd -f -p 8080 -h /tmp/www'
                          if role == 'server' else 'sleep 600')

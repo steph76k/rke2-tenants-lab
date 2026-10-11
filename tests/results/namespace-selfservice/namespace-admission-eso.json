@@ -1,0 +1,165 @@
+{
+  "runId": "7e8316e3b2",
+  "namespaceCreationMethod": "Kubernetes impersonation of exact tenant groups",
+  "checks": [
+    {
+      "test": "namespace-create",
+      "group": "mandant-a-developers",
+      "namespace": "mandant-a-selfservice-developers-7e8316e3b2",
+      "passed": true
+    },
+    {
+      "test": "wrong-prefix-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "foreign-project-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "missing-project-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "spoof-project-label-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "remove-project-label-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "move-project-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "spoof-cilium-identity-mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "eso-own-allowed-foreign-denied",
+      "group": "mandant-a-developers",
+      "passed": true
+    },
+    {
+      "test": "namespace-create",
+      "group": "mandant-a-admins",
+      "namespace": "mandant-a-selfservice-admins-7e8316e3b2",
+      "passed": true
+    },
+    {
+      "test": "wrong-prefix-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "foreign-project-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "missing-project-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "spoof-project-label-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "remove-project-label-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "move-project-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "spoof-cilium-identity-mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "eso-own-allowed-foreign-denied",
+      "group": "mandant-a-admins",
+      "passed": true
+    },
+    {
+      "test": "namespace-create",
+      "group": "mandant-b-developers",
+      "namespace": "mandant-b-selfservice-developers-7e8316e3b2",
+      "passed": true
+    },
+    {
+      "test": "wrong-prefix-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "foreign-project-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "missing-project-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "spoof-project-label-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "remove-project-label-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "move-project-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "spoof-cilium-identity-mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "eso-own-allowed-foreign-denied",
+      "group": "mandant-b-developers",
+      "passed": true
+    },
+    {
+      "test": "namespace-create",
+      "group": "mandant-b-admins",
+      "namespace": "mandant-b-selfservice-admins-7e8316e3b2",
+      "passed": true
+    },
+    {
+      "test": "wrong-prefix-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "foreign-project-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "missing-project-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "spoof-project-label-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "remove-project-label-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "move-project-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "spoof-cilium-identity-mandant-b-admins",
+      "passed": true
+    },
+    {
+      "test": "eso-own-allowed-foreign-denied",
+      "group": "mandant-b-admins",
+      "passed": true
+    }
+  ],
+  "cleanupErrors": [],
+  "namespaceDeletionRequested": 4,
+  "syntheticKVAndUsersRemoved": true
+}

@@ -122,7 +122,9 @@ resource "kubernetes_manifest" "secret_store" {
     kind       = "ClusterSecretStore"
     metadata   = { name = local.service_account }
     spec = {
-      conditions = [{ namespaces = local.namespaces }]
+      conditions = [{ namespaceSelector = { matchLabels = {
+        "field.cattle.io/projectId" = split(":", rancher2_project.tenant.id)[1]
+      } } }]
       provider = {
         vault = {
           server    = var.openbao_url

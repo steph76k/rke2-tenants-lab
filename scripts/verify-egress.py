@@ -14,10 +14,12 @@ parser.add_argument('--kubeconfig', required=True)
 parser.add_argument('--listen', required=True, help='Reachable LAN IP of this operator host')
 parser.add_argument('--port', type=int, default=18765)
 parser.add_argument('--output', type=Path, required=True)
+parser.add_argument('--namespace-map', type=Path, help='Optional JSON mapping tenant to an existing test namespace')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 gateways = json.loads((root / 'config/egress-gateways.json').read_text())
 tenants = {p.stem: json.loads(p.read_text()) for p in (root / 'tenants').glob('*.json')}
+namespace_map = json.loads(args.namespace_map.read_text()) if args.namespace_map else {}
 run_id = secrets.token_hex(6)
 endpoint = '/afi-egress-' + run_id
 kube = ['kubectl', '--kubeconfig=' + args.kubeconfig, '--request-timeout=20s']
@@ -52,7 +54,7 @@ threading.Thread(target=server.serve_forever, daemon=True).start()
 created, results = [], []
 try:
     for tenant, declaration in sorted(tenants.items()):
-        namespace = tenant + '-' + declaration['environments'][0]
+        namespace = namespace_map.get(tenant, tenant + '-' + declaration['environments'][0])
         for worker, expected in sorted(declaration['egress_ips'].items()):
             name = 'afi-egress-' + worker + '-' + run_id
             pod = {'apiVersion': 'v1', 'kind': 'Pod', 'metadata': {

@@ -1,0 +1,165 @@
+{
+  "locals": {
+    "project_tenants": "${{ for slug, tenant in module.tenant : tenant.summary.project_id => slug }}",
+    "tenant_group_projects": "${merge([for slug, tenant in module.tenant : { for suffix in [\"\", \"-developers\", \"-admins\", \"-logs-readers\"] : \"keycloakoidc_group://${slug}${suffix}\" => tenant.summary.project_id }]...)}",
+    "tenant_admission_manifests": {
+      "namespaces": {
+        "apiVersion": "admissionregistration.k8s.io/v1",
+        "kind": "ValidatingAdmissionPolicy",
+        "metadata": {
+          "name": "afi-tenant-namespaces"
+        },
+        "spec": {
+          "failurePolicy": "Fail",
+          "matchConstraints": {
+            "resourceRules": [
+              {
+                "apiGroups": [
+                  ""
+                ],
+                "apiVersions": [
+                  "v1"
+                ],
+                "operations": [
+                  "CREATE",
+                  "UPDATE"
+                ],
+                "resources": [
+                  "namespaces"
+                ]
+              }
+            ]
+          },
+          "variables": [
+            {
+              "name": "projects",
+              "expression": "${jsonencode(local.project_tenants)}"
+            },
+            {
+              "name": "groups",
+              "expression": "${jsonencode(local.tenant_group_projects)}"
+            },
+            {
+              "name": "project",
+              "expression": "has(object.metadata.annotations) && 'field.cattle.io/projectId' in object.metadata.annotations ? object.metadata.annotations['field.cattle.io/projectId'] : ''"
+            },
+            {
+              "name": "oldProject",
+              "expression": "oldObject != null && has(oldObject.metadata.annotations) && 'field.cattle.io/projectId' in oldObject.metadata.annotations ? oldObject.metadata.annotations['field.cattle.io/projectId'] : ''"
+            },
+            {
+              "name": "tenantUser",
+              "expression": "request.userInfo.groups.exists(g, g in variables.groups)"
+            },
+            {
+              "name": "tenantName",
+              "expression": "variables.projects.exists(p, object.metadata.name.startsWith(variables.projects[p] + '-'))"
+            }
+          ],
+          "validations": [
+            {
+              "expression": "!(variables.project in variables.projects) || object.metadata.name.startsWith(variables.projects[variables.project] + '-')",
+              "message": "Namespace name must start with the tenant slug and a hyphen."
+            },
+            {
+              "expression": "!variables.tenantName || variables.project in variables.projects",
+              "message": "A tenant-prefixed namespace must belong to a registered tenant project."
+            },
+            {
+              "expression": "!variables.tenantUser || request.userInfo.groups.exists(g, g in variables.groups && variables.groups[g] == variables.project)",
+              "message": "Tenant users must create and manage namespaces in one of their own registered projects."
+            },
+            {
+              "expression": "!(variables.oldProject in variables.projects) || variables.project == variables.oldProject",
+              "message": "Tenant project membership is immutable; cross-tenant moves require an administrator-led migration."
+            }
+          ]
+        }
+      },
+      "pods": {
+        "apiVersion": "admissionregistration.k8s.io/v1",
+        "kind": "ValidatingAdmissionPolicy",
+        "metadata": {
+          "name": "afi-tenant-pods"
+        },
+        "spec": {
+          "failurePolicy": "Fail",
+          "matchConstraints": {
+            "resourceRules": [
+              {
+                "apiGroups": [
+                  ""
+                ],
+                "apiVersions": [
+                  "v1"
+                ],
+                "operations": [
+                  "CREATE",
+                  "UPDATE"
+                ],
+                "resources": [
+                  "pods"
+                ]
+              }
+            ]
+          },
+          "variables": [
+            {
+              "name": "projects",
+              "expression": "${jsonencode(local.project_tenants)}"
+            },
+            {
+              "name": "project",
+              "expression": "has(namespaceObject.metadata.annotations) && 'field.cattle.io/projectId' in namespaceObject.metadata.annotations ? namespaceObject.metadata.annotations['field.cattle.io/projectId'] : ''"
+            },
+            {
+              "name": "projectLabel",
+              "expression": "has(namespaceObject.metadata.labels) && 'field.cattle.io/projectId' in namespaceObject.metadata.labels ? namespaceObject.metadata.labels['field.cattle.io/projectId'] : ''"
+            },
+            {
+              "name": "tenantNamespace",
+              "expression": "variables.project in variables.projects || variables.projects.exists(p, namespaceObject.metadata.name.startsWith(variables.projects[p] + '-'))"
+            }
+          ],
+          "validations": [
+            {
+              "expression": "!variables.tenantNamespace || (variables.project in variables.projects && variables.projectLabel != '' && variables.project.endsWith(':' + variables.projectLabel) && namespaceObject.metadata.name.startsWith(variables.projects[variables.project] + '-'))",
+              "message": "Wait until Rancher has completed the authorized namespace project assignment before starting pods."
+            },
+            {
+              "expression": "!variables.tenantNamespace || !has(object.metadata.labels) || object.metadata.labels.all(k, !k.startsWith('io.cilium.k8s.namespace.labels') && k != 'io.kubernetes.pod.namespace')",
+              "message": "Tenant pods cannot supply reserved Cilium namespace identity labels."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "resource": {
+    "kubernetes_manifest": {
+      "tenant_admission": {
+        "for_each": "${local.tenant_admission_manifests}",
+        "manifest": "${each.value}"
+      },
+      "tenant_admission_binding": {
+        "for_each": "${local.tenant_admission_manifests}",
+        "manifest": {
+          "apiVersion": "admissionregistration.k8s.io/v1",
+          "kind": "ValidatingAdmissionPolicyBinding",
+          "metadata": {
+            "name": "${each.value.metadata.name}"
+          },
+          "spec": {
+            "policyName": "${each.value.metadata.name}",
+            "validationActions": [
+              "Deny"
+            ]
+          }
+        },
+        "depends_on": [
+          "kubernetes_manifest.tenant_admission"
+        ]
+      }
+    }
+  }
+}

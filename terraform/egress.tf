@@ -55,8 +55,8 @@ resource "kubernetes_manifest" "tenant_egress" {
     spec = {
       selectors = [{
         podSelector = { matchExpressions = [{
-          key    = "io.kubernetes.pod.namespace", operator = "In"
-          values = module.tenant[each.value.owner].summary.namespaces
+          key    = "io.cilium.k8s.namespace.labels.field.cattle.io/projectId", operator = "In"
+          values = [split(":", module.tenant[each.value.owner].summary.project_id)[1]]
         }] }
         nodeSelector = { matchExpressions = [{
           key      = "kubernetes.io/hostname"
@@ -71,7 +71,7 @@ resource "kubernetes_manifest" "tenant_egress" {
       }
     }
   }
-  depends_on = [terraform_data.egress_address]
+  depends_on = [terraform_data.egress_address, kubernetes_manifest.tenant_admission_binding]
 }
 
 output "egress_addresses" {

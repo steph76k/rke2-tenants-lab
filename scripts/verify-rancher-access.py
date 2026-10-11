@@ -53,7 +53,9 @@ for tenant in ['mandant-a', 'mandant-b']:
     ids[tenant] = cluster + ':' + matching[0]['metadata']['name']
 
 for tenant, group in [('mandant-a', 'mandant-a-developers'),
-                      ('mandant-b', 'mandant-b-developers'), ('mandant-a', 'mandant-a')]:
+                      ('mandant-b', 'mandant-b-developers'),
+                      ('mandant-a', 'mandant-a-admins'), ('mandant-b', 'mandant-b-admins'),
+                      ('mandant-a', 'mandant-a')]:
     uid = rid = None
     name = 'afi-rancher-probe-' + secrets.token_hex(8)
     password = secrets.token_urlsafe(32)
@@ -113,12 +115,15 @@ for tenant, group in [('mandant-a', 'mandant-a-developers'),
         denied = browser.get(rancher + '/v3/projects/' + ids[other], timeout=20)
         assert allowed.status_code == 200 and denied.status_code in [403, 404]
         checks = []
-        for environment in ['dev', 'test', 'prod']:
-            for target in [tenant, other]:
+        namespaces = json.loads(kubectl(['--server=' + rancher + '/k8s/clusters/' + cluster,
+                                        'get', 'namespaces', '-o', 'json']))['items']
+        for target in [tenant, other]:
+            for namespace in sorted(x['metadata']['name'] for x in namespaces
+                                    if x['metadata'].get('annotations', {}).get('field.cattle.io/projectId') == ids[target]):
                 r = browser.get(rancher + '/k8s/clusters/' + cluster + '/api/v1/namespaces/' +
-                                target + '-' + environment + '/pods', timeout=30)
+                                namespace + '/pods', timeout=30)
                 assert r.status_code == (200 if target == tenant else 403)
-                checks.append({'namespace': target + '-' + environment, 'http': r.status_code})
+                checks.append({'namespace': namespace, 'http': r.status_code})
         result = {'group': group, 'projectAllowedHttp': allowed.status_code,
                   'foreignProjectHttp': denied.status_code, 'kubernetes': checks,
                   'pkce': 'S256', 'passed': True}

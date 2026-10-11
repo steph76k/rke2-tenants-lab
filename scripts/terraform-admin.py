@@ -6,7 +6,7 @@ and provider credentials outside Git. Set TERRAFORM_BIN to select Terraform >=1.
 import argparse,os,re,subprocess
 from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__)
-p.add_argument('command',choices=['init','plan','apply','validate','fmt','output','state','show','providers','version'])
+p.add_argument('command',choices=['init','plan','apply','validate','fmt','output','state','show','providers','version','import'])
 p.add_argument('arguments',nargs=argparse.REMAINDER);a=p.parse_args()
 root=Path(__file__).resolve().parents[1]
 os.umask(0o077)

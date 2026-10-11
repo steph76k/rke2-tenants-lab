@@ -71,3 +71,30 @@ KV-Daten und historische Logzugriffe bleiben erhalten.
 Nachweise: `tests/results/cluster2-migration.json`, `project-isolation-cluster2.json`,
 `rancher-access-cluster2.json`, `egress-cluster2.json`, `new-tenant-egress-plan.json`.
 Logging-/Collector-Nachweise stehen im Plattformrepo. Betriebsgrenzen: [Egress](egress.md).
+
+## Namespace Self-Service am 11.10.2026
+
+Vier frische Namespaces wurden mit den exakten A/B-Admin-/Developer-Gruppen per
+Kubernetes-Impersonation angelegt, ohne Terraform-Import oder Namespace-Katalog.
+
+- 36 Admission-/ESO-Prüfungen erfolgreich: erlaubte Erstellung, Pflichtpräfix,
+  fremde/fehlende Projektzuordnung, Manipulation/Entfernung des Projektlabels,
+  Projektwechsel, gefälschte Cilium-Identität und eigene/fremde Secret-Stores.
+- Vier richtige Egress-IP-Adressen am externen Empfänger nachgewiesen.
+- 16/16 Netzwerkfälle in den neuen Namespaces erfolgreich.
+- Fünf echte Rancher-OIDC-Anmeldungen: eigene bestehende und neue Namespaces HTTP 200,
+  fremde HTTP 403; PKCE S256.
+- Reale Pod-Logs aus neuen A/B-Namespaces ausschließlich im eigenen Index; gefälschte
+  Metadaten wirkungslos, direkter Forward-Zugang blockiert. OpenSearch-OIDC: eigene
+  Logs HTTP 200, fremde HTTP 403.
+- Test-Namespaces, synthetische KV-Keys, Testidentitäten und eigene Logmarker entfernt.
+- Sechs bestehende Logging-CRs ohne UID-Wechsel aus Fleet übernommen; alte feste
+  Namespace-Listen explizit geleert. Vier Admission-Ressourcen hinzugefügt.
+- Zusätzlicher Mandant ausschließlich per Plan: 34 Creates, automatische `.204/.205`,
+  zwei neue Logging-Ressourcen. Nur globale Reservierungs-/Admission-Zuordnungen und
+  Plattform-Auffangroute werden ergänzt; bestehende A/B-Ressourcen unverändert.
+  Kein Apply; temporäre Deklaration entfernt.
+
+Abschließender vollständiger Terraform-Plan: Exitcode 0, keine Änderungen.
+Nachweise: `tests/results/namespace-selfservice/`. Reproduktion und Grenzen:
+[Namespace Self-Service](namespace-self-service.md).

@@ -5,7 +5,7 @@ TLS-verified OpenSearch tunnel described in docs/operations.md. Not a tenant CLI
 """
 import argparse,json,os,re,subprocess,tempfile
 from pathlib import Path
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('command',choices=['init','plan','apply','validate','fmt','output','state','show','providers','version']);p.add_argument('arguments',nargs=argparse.REMAINDER);a=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('command',choices=['init','plan','apply','validate','fmt','output','state','show','providers','version','import']);p.add_argument('arguments',nargs=argparse.REMAINDER);a=p.parse_args()
 root=Path(__file__).resolve().parents[1]
 os.umask(0o077);env=dict(os.environ,BAO_ADDR=os.environ.get('BAO_ADDR','https://openbao.berger.ph'),BAO_NAMESPACE='',VAULT_NAMESPACE='')
 for k in list(env):

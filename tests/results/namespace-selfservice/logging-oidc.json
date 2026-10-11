@@ -1,0 +1,28 @@
+{
+  "cluster": "rke2-cluster2",
+  "mandant-a": {
+    "forgedNamespaceAndPodLabelsIgnored": true,
+    "forgedLogMetadataContainedInMessage": true,
+    "realNamespaceUsed": true,
+    "onlyOwnTenantIndex": true,
+    "directForwardConnectionBlocked": true,
+    "markerHits": 1,
+    "oidcOwnRealPodLogs": 200,
+    "oidcForeignRealPodLogsDenied": 403
+  },
+  "mandant-b": {
+    "forgedNamespaceAndPodLabelsIgnored": true,
+    "forgedLogMetadataContainedInMessage": true,
+    "realNamespaceUsed": true,
+    "onlyOwnTenantIndex": true,
+    "directForwardConnectionBlocked": true,
+    "markerHits": 1,
+    "oidcOwnRealPodLogs": 200,
+    "oidcForeignRealPodLogsDenied": 403
+  },
+  "cleanup": {
+    "probePodsRemoved": true,
+    "namespaceLabelsRestored": true,
+    "onlyOwnProbeDocumentsDeleted": true
+  }
+}

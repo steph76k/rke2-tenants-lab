@@ -1,0 +1,97 @@
+{
+  "time": "2026-10-11T14:13:03.469182+00:00",
+  "terraformPlanExitCode": 0,
+  "testNamespacesRemaining": 0,
+  "nodesReady": {
+    "rke2-cluster2-cp-1.berger.ph": true,
+    "rke2-cluster2-cp-2.berger.ph": true,
+    "rke2-cluster2-cp-3.berger.ph": true,
+    "rke2-cluster2-wk-1.berger.ph": true,
+    "rke2-cluster2-wk-2.berger.ph": true
+  },
+  "loggingResourceUIDsPreserved": true,
+  "loggingFlows": {
+    "afi-mandant-a": {
+      "active": true,
+      "matches": [
+        {
+          "select": {
+            "namespace_labels": {
+              "field.cattle.io/projectId": "p-p2q7n"
+            },
+            "namespaces": []
+          }
+        }
+      ]
+    },
+    "afi-mandant-b": {
+      "active": true,
+      "matches": [
+        {
+          "select": {
+            "namespace_labels": {
+              "field.cattle.io/projectId": "p-j79sh"
+            },
+            "namespaces": []
+          }
+        }
+      ]
+    },
+    "afi-platform": {
+      "active": true,
+      "matches": [
+        {
+          "exclude": {
+            "namespace_labels": {
+              "field.cattle.io/projectId": "p-p2q7n"
+            },
+            "namespaces": []
+          }
+        },
+        {
+          "exclude": {
+            "namespace_labels": {
+              "field.cattle.io/projectId": "p-j79sh"
+            },
+            "namespaces": []
+          }
+        },
+        {
+          "select": {}
+        }
+      ]
+    }
+  },
+  "tenantStoresReady": {
+    "openbao-mandant-a": true,
+    "openbao-mandant-b": true
+  },
+  "admissionWarnings": {
+    "afi-project-label-integrity": [],
+    "afi-tenant-namespaces": [],
+    "afi-tenant-pods": []
+  },
+  "daemonsets": {
+    "cattle-logging-system/rancher-logging-root-fluentbit": {
+      "desiredNumberScheduled": 5,
+      "numberReady": 5
+    },
+    "cilium-test-1/host-netns-non-cilium": {
+      "desiredNumberScheduled": 0,
+      "numberReady": 0
+    },
+    "kube-system/cilium": {
+      "desiredNumberScheduled": 5,
+      "numberReady": 5
+    },
+    "kube-system/cilium-envoy": {
+      "desiredNumberScheduled": 5,
+      "numberReady": 5
+    }
+  },
+  "fleetSummary": {
+    "desiredReady": 34,
+    "ready": 34
+  },
+  "fleetCommit": "d5f338922bea7eafa8a208fe986c8aab89424127"
+}
