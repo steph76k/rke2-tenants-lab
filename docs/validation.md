@@ -49,3 +49,25 @@ vault 5.12.0. Quellen: [Rancher-Provider](https://github.com/rancher/terraform-p
   Testdatei entfernt und danach erneut leerer Plan.
 - Bereinigte Nachweise: `tests/results/shared-state-migration.json` und
   `tests/results/shared-state-validation.json`.
+
+## Cluster-2-Migration und Egress am 11.10.2026
+
+Die oben genannten Cluster-1-Import-IDs sind historisch. Aktuell: A `c-44q9v:p-p2q7n`,
+B `c-44q9v:p-j79sh`, OpenBao-Kubernetes-Auth jeweils `rke2-cluster2`.
+Alle alten clustergebundenen Tenant-Ressourcen wurden nach Sicherung und Prüfung entfernt;
+KV-Daten und historische Logzugriffe bleiben erhalten.
+
+- Rancher-Projekt-Isolation: 16/16 positive/negative Netzwerkfälle über beide Worker.
+- Rancher-OIDC: A/B-Developers sowie bestehende Gruppe A; eigene Projekte und
+  Namespace-Podlisten 200, fremde 403, PKCE S256, Prüfidentitäten entfernt.
+- Egress-IP-Nachweis: A `.200/.201`, B `.202/.203`, jeweils am externen LAN-Empfänger.
+- Neuer Mandant: `.204/.205`, zwei persistente Adressen und zwei Policies automatisch;
+  insgesamt 32 Creates, nur Reservierungsliste geändert, keine Änderungen an A/B.
+  Nur Plan, kein Apply; Testdeklaration entfernt.
+- Drei migrierte A-Secrets vor Quellbereinigung identisch, alle ESO-Stores Ready.
+- Shared-State-Egress-Apply: neun neue Instanzen, keine Löschung; danach 65 verwaltete
+  Ressourceninstanzen. Vollständiger nachgelagerter Plan ohne Änderungen.
+
+Nachweise: `tests/results/cluster2-migration.json`, `project-isolation-cluster2.json`,
+`rancher-access-cluster2.json`, `egress-cluster2.json`, `new-tenant-egress-plan.json`.
+Logging-/Collector-Nachweise stehen im Plattformrepo. Betriebsgrenzen: [Egress](egress.md).

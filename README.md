@@ -3,7 +3,9 @@
 Ein Mandant wird durch `tenants/<name>.json` beschrieben. Terraform verwaltet seine
 Keycloak-Gruppen im Realm `berger`, das Rancher-Projekt, Namespaces, private
 Harbor-Projekte und Projektmitgliedschaften, OpenBao/ESO sowie isolierte
-OpenSearch-Leserollen und Dashboards-Tenants.
+OpenSearch-Leserollen und Dashboards-Tenants. A/B liegen vollständig auf Cluster 2.
+Jeder Mandant erhält zwei persistente Egress-IP-Adressen und zwei Cilium-Policies,
+je eine pro Worker. Details und Ausfallgrenzen: [Egress](docs/egress.md).
 
 Lokaler Pfad: `/home/tanzu/manifest/fleet/rke2-tenants-lab`.
 Remote: `git@github.com:steph76k/rke2-tenants-lab.git`.
@@ -42,6 +44,10 @@ python3 scripts/lab-terraform.py apply tenants.tfplan
 liest vorhandene administrative Zugänge nur in den Prozessspeicher; er ist für den
 Plattformoperator gedacht. `scripts/terraform-admin.py` ist die Alternative für
 bereits sicher bereitgestellte Umgebungsvariablen, etwa spätere eingeschränkte CI-Zugänge.
+
+`new-tenant.py` reserviert automatisch zwei freie Adressen aus `192.168.1.200–220`.
+Die Reservierungen stehen dauerhaft in der Mandantendatei; bestehende Mandanten
+werden nicht neu nummeriert.
 
 Anschließend den administrativen Namespace-Katalog im Plattform-Repository ergänzen,
 Logging-Routen über Fleet ausrollen und mandantenspezifische Index-Patterns anlegen.

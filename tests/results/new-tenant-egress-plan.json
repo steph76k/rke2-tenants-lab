@@ -1,0 +1,12 @@
+{
+  "newTenantOnlyCreates": 32,
+  "allocationRegistryUpdates": 1,
+  "existingTenantResourcesChanged": 0,
+  "reservedIPs": {
+    "worker1": "192.168.1.204",
+    "worker2": "192.168.1.205"
+  },
+  "newEgressPolicies": 2,
+  "newPersistentNodeAddresses": 2,
+  "applied": false
+}

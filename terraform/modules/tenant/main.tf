@@ -64,7 +64,7 @@ resource "vault_mount" "secrets" {
 }
 resource "vault_auth_backend" "kubernetes" {
   namespace = vault_namespace.tenant.path
-  path      = "rke2-cluster1"
+  path      = var.cluster_name
   type      = "kubernetes"
   lifecycle { prevent_destroy = true }
 }
@@ -108,7 +108,7 @@ resource "kubernetes_cluster_role_binding_v1" "tokenreview" {
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "ClusterRole"
-    name      = "openbao-tokenreviewer"
+    name      = var.tokenreview_role_name
   }
   subject {
     kind      = "ServiceAccount"

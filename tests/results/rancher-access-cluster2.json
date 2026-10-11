@@ -1,0 +1,104 @@
+{
+  "results": [
+    {
+      "group": "mandant-a-developers",
+      "projectAllowedHttp": 200,
+      "foreignProjectHttp": 403,
+      "kubernetes": [
+        {
+          "namespace": "mandant-a-dev",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-b-dev",
+          "http": 403
+        },
+        {
+          "namespace": "mandant-a-test",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-b-test",
+          "http": 403
+        },
+        {
+          "namespace": "mandant-a-prod",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-b-prod",
+          "http": 403
+        }
+      ],
+      "pkce": "S256",
+      "passed": true
+    },
+    {
+      "group": "mandant-b-developers",
+      "projectAllowedHttp": 200,
+      "foreignProjectHttp": 403,
+      "kubernetes": [
+        {
+          "namespace": "mandant-b-dev",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-a-dev",
+          "http": 403
+        },
+        {
+          "namespace": "mandant-b-test",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-a-test",
+          "http": 403
+        },
+        {
+          "namespace": "mandant-b-prod",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-a-prod",
+          "http": 403
+        }
+      ],
+      "pkce": "S256",
+      "passed": true
+    },
+    {
+      "group": "mandant-a",
+      "projectAllowedHttp": 200,
+      "foreignProjectHttp": 403,
+      "kubernetes": [
+        {
+          "namespace": "mandant-a-dev",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-b-dev",
+          "http": 403
+        },
+        {
+          "namespace": "mandant-a-test",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-b-test",
+          "http": 403
+        },
+        {
+          "namespace": "mandant-a-prod",
+          "http": 200
+        },
+        {
+          "namespace": "mandant-b-prod",
+          "http": 403
+        }
+      ],
+      "pkce": "S256",
+      "passed": true
+    }
+  ],
+  "temporaryIdentitiesRemoved": true
+}

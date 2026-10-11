@@ -1,0 +1,24 @@
+{
+  "oldCluster": "rke2-cluster1",
+  "newCluster": "rke2-cluster2",
+  "oldNamespacesRemoved": [
+    "mandant-a-dev",
+    "mandant-a-test",
+    "mandant-a-prod",
+    "mandant-b-dev",
+    "mandant-b-test",
+    "mandant-b-prod"
+  ],
+  "oldProjectIdsRemoved": [
+    "p-9nh78",
+    "p-hdvlf"
+  ],
+  "migratedSecretsEqual": [
+    "mandant-a-dev/mandant-a-demo",
+    "mandant-a-test/mandant-a-demo",
+    "mandant-a-prod/mandant-a-demo"
+  ],
+  "oldKubernetesAuthMountsRemoved": true,
+  "tenantKVDataPreserved": true,
+  "encryptedBackupVerified": true
+}

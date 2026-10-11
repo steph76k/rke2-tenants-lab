@@ -19,11 +19,12 @@ die bestehenden Administratorzugänge nur im Prozessspeicher verwendet. Für Tea
 separate eingeschränkte Servicekonten bereitstellen. `VAULT_NAMESPACE` muss für reguläre
 Pläne leer sein; Ressourcen wählen ihren Mandanten-Namespace explizit.
 
-Die Kubernetes-Verbindung nutzt `~/.kube/config`, Kontext `rke2-cluster1`.
-OpenBao kontaktiert den nativen API-Endpunkt `https://192.168.1.23:6443` mit der
-öffentlichen CA aus `config/cluster1-ca.crt`. Terraform benötigt nur die CA, keinen
+Die Kubernetes-Verbindung nutzt `~/.kube/config`, Kontext `rancher`, mit dem
+Cluster-2-Endpunkt `https://rancher.berger.ph/k8s/clusters/c-44q9v`.
+OpenBao kontaktiert den nativen API-Endpunkt `https://192.168.1.164:6443` mit der
+öffentlichen CA aus `config/cluster2-ca.crt`. Terraform benötigt nur die CA, keinen
 persistenten TokenReviewer-Token: ESO authentifiziert sich mit kurzlebigen SA-Tokens.
-Der gemeinsame ClusterRole `openbao-tokenreviewer` muss bereits vorhanden sein und darf
+Der gemeinsame ClusterRole `lab-infra-openbao-tokenreview` muss bereits vorhanden sein und darf
 nur `create` auf `authentication.k8s.io/tokenreviews` erlauben. ESO und seine v1-CRDs,
 Rancher/OIDC, Realm berger, Harbor und OpenBao sind Plattform-Voraussetzungen.
 
@@ -52,7 +53,8 @@ Variablen extern bereitstellen. Zusätzlich benötigt: `TF_VAR_opensearch_passwo
 
 ## Import und Recovery
 
-Die geprüften Import-IDs von Mandant A stehen in [validation.md](validation.md).
+Die historischen Import-IDs von Mandant A stehen in [validation.md](validation.md).
+Sie beziehen sich auf Cluster 1 und dürfen nach dem Umzug nicht erneut importiert werden.
 Der Vault-Provider übernimmt bei CLI-Imports die Ressourcen-Namespace-Angabe nicht
 zuverlässig. Beim Import eines OpenBao-Unterobjekts muss der Provider temporär auf
 `mandant-a` zeigen. Anschließend muss auch dessen State-Attribut `namespace` ausdrücklich

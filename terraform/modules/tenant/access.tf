@@ -33,7 +33,7 @@ resource "opensearch_role" "logs" {
   description         = "Only ${var.slug} application logs and its own saved objects"
   cluster_permissions = ["cluster_composite_ops_ro", "cluster:monitor/main"]
   index_permissions {
-    index_patterns  = ["logs-rke2-cluster1-${var.slug}-*"]
+    index_patterns  = ["logs-rke2-cluster1-${var.slug}-*", "logs-rke2-cluster2-${var.slug}-*"]
     allowed_actions = ["read"]
   }
   tenant_permissions {

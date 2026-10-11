@@ -1,0 +1,294 @@
+{
+  "time": "2026-10-11T11:48:41.193875+00:00",
+  "results": [
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.38"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.252"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.40"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.194"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.38"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.252"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.40"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.194"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.38"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.252"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.40"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.194"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.38"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-a",
+        "namespace": "mandant-a-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.252"
+      },
+      "expected": "denied",
+      "observed": "denied",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker1-6b7a1a847d",
+        "worker": "worker1",
+        "ip": "10.42.4.40"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    },
+    {
+      "source": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-test",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2"
+      },
+      "destination": {
+        "tenant": "mandant-b",
+        "namespace": "mandant-b-dev",
+        "name": "afi-isolation-worker2-6b7a1a847d",
+        "worker": "worker2",
+        "ip": "10.42.5.194"
+      },
+      "expected": "allowed",
+      "observed": "allowed",
+      "passed": true
+    }
+  ],
+  "probePodsRemoved": true
+}

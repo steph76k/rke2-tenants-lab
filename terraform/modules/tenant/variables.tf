@@ -33,3 +33,6 @@ variable "cluster_id" { type = string }
 variable "openbao_url" { type = string }
 variable "kubernetes_host" { type = string }
 variable "kubernetes_ca_cert" { type = string }
+
+variable "cluster_name" { type = string }
+variable "tokenreview_role_name" { type = string }

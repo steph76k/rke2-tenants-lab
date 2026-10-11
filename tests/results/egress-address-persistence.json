@@ -1,0 +1,22 @@
+[
+  {
+    "node": "rke2-cluster2-wk-1.berger.ph",
+    "ip": "192.168.1.200",
+    "consistent": true
+  },
+  {
+    "node": "rke2-cluster2-wk-2.berger.ph",
+    "ip": "192.168.1.201",
+    "consistent": true
+  },
+  {
+    "node": "rke2-cluster2-wk-1.berger.ph",
+    "ip": "192.168.1.202",
+    "consistent": true
+  },
+  {
+    "node": "rke2-cluster2-wk-2.berger.ph",
+    "ip": "192.168.1.203",
+    "consistent": true
+  }
+]

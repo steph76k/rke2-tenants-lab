@@ -11,3 +11,4 @@ crash.*.log
 *.key
 __pycache__/
 *.pyc
+tenants/.allocation.lock

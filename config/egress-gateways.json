@@ -1,0 +1,4 @@
+{
+  "worker1": {"node": "rke2-cluster2-wk-1.berger.ph", "host": "192.168.1.167", "primary": "192.168.1.167/24", "interface": "ens33", "connection": "ens33", "user": "ansible"},
+  "worker2": {"node": "rke2-cluster2-wk-2.berger.ph", "host": "192.168.1.168", "primary": "192.168.1.168/24", "interface": "ens33", "connection": "ens33", "user": "ansible"}
+}
