@@ -1,0 +1,80 @@
+{
+  "groupAccess": [
+    {
+      "group": "keycloakoidc_group://mandant-a",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-a-admins",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-a-developers",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-a-logs-readers",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-b",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-b-admins",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-b-developers",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    },
+    {
+      "group": "keycloakoidc_group://mandant-b-logs-readers",
+      "viewerAllowed": true,
+      "configurationWritesAndSecretReadsDenied": true,
+      "alertmanagerPostDenied": true
+    }
+  ],
+  "sessions": [
+    {
+      "group": "mandant-a-admins",
+      "realOidcLogin": true,
+      "monitoringUiAndGrafanaLinkVisible": true,
+      "grafanaHealthHttp": 200,
+      "centralPrometheusBothTenantsVisible": true,
+      "grafanaWriteHttp": 403,
+      "foreignWorkloadsHttp": 403
+    },
+    {
+      "group": "mandant-b-developers",
+      "realOidcLogin": true,
+      "monitoringUiAndGrafanaLinkVisible": true,
+      "grafanaHealthHttp": 200,
+      "centralPrometheusBothTenantsVisible": true,
+      "grafanaWriteHttp": 403,
+      "foreignWorkloadsHttp": 403
+    }
+  ],
+  "terraform": {
+    "created": 3,
+    "changed": 0,
+    "destroyed": 0,
+    "finalPlanExitCode": 0
+  },
+  "temporaryIdentitiesRemoved": true,
+  "grafanaCommonDefaultAdminPassword": false
+}

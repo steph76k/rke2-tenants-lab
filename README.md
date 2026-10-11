@@ -61,6 +61,10 @@ Argo-CD-AppProjects, Repo-Freigaben und Admin-/Developer-Rechte entstehen ebenfa
 über Terraform. Fachbereiche verwalten ihre Anwendungsmanifeste in eigenen Repositories.
 Anleitung und Grenzen: [Argo CD](docs/argocd.md).
 
+Alle Mandantengruppen erhalten im Lab lesenden Zugriff auf das zentrale, clusterweite
+Monitoring. Diese Freigabe ist ausdrücklich nicht mandantengetrennt und wird ebenfalls
+über Terraform verwaltet: [Monitoring-Zugriff](docs/monitoring.md).
+
 ## State und Lebenszyklus
 
 Alle Mandanten werden zentral in **einem** verschlüsselten State unter
