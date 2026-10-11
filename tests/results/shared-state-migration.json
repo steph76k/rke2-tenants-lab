@@ -1,0 +1,18 @@
+{
+  "migratedAtUTC": "2026-10-11T09:44:55.447846+00:00",
+  "sourceTenants": [
+    "mandant-a",
+    "mandant-b"
+  ],
+  "stateKey": "lab/tenants/terraform.tfstate",
+  "managedResourceInstances": 56,
+  "resourceAttributesPreservedDuringMerge": true,
+  "resourceCreates": 0,
+  "resourceUpdates": 0,
+  "resourceDeletes": 0,
+  "finalPlanExitCode": 0,
+  "sourceStatesRetained": true,
+  "legacyBackendWritesDisabled": true,
+  "encryptedBackupsVerified": true,
+  "sharedStateVersionId": "dd28132d-b6a6-444a-9999-d751b8782f97"
+}

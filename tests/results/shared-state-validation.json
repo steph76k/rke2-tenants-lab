@@ -1,0 +1,8 @@
+{
+  "sharedStateLockEnforced": true,
+  "newTenantDryRunCreates": 28,
+  "existingTenantChanges": 0,
+  "probeApplied": false,
+  "probeDeclarationRemoved": true,
+  "finalPlanExitCode": 0
+}

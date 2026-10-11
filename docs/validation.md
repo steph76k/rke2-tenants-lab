@@ -35,3 +35,17 @@ vault 5.12.0. Quellen: [Rancher-Provider](https://github.com/rancher/terraform-p
 [Keycloak-Provider](https://github.com/keycloak/terraform-provider-keycloak),
 [Harbor-Provider](https://github.com/goharbor/terraform-provider-harbor),
 [Vault-Provider](https://github.com/hashicorp/terraform-provider-vault/tree/v5.12.0).
+
+## Gemeinsamer administrativer State am 11.10.2026
+
+- A/B zusammengeführt: 56 verwaltete Ressourceninstanzen, identische Adressen und
+  Ressourcenattribute; keine Ressource angelegt, geändert oder gelöscht.
+- Beide Quellstates während der Migration gesperrt und zusammen mit Backend-Zugängen
+  SOPS-verschlüsselt gesichert; Entschlüsselung im Speicher verifiziert.
+- Neuer zentraler State: `lab/tenants/terraform.tfstate`; abschließender Plan Exitcode 0.
+- Alter Einzelmandanten-Runner blockiert; alte Backend-Zugänge schreibgeschützt.
+- Gesetztes zentrales S3-Lock verhindert einen normalen Terraform-Plan.
+- Temporäre neue Mandantendatei: exakt 28 Creates, keine Änderung an A/B; kein Apply.
+  Testdatei entfernt und danach erneut leerer Plan.
+- Bereinigte Nachweise: `tests/results/shared-state-migration.json` und
+  `tests/results/shared-state-validation.json`.

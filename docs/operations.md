@@ -44,7 +44,7 @@ für bestehende Plattformadministratoren vorgesehen, nicht für Mandantenbenutze
 `TERRAFORM_BIN` muss auf eine passende installierte Terraform-Version zeigen.
 Die Systemversion 1.3.9 reicht für S3-Locking nicht aus.
 
-Alternativ `scripts/terraform-tenant.py` verwenden und alle Provider- sowie Backend-
+Alternativ `scripts/terraform-admin.py` verwenden und alle Provider- sowie Backend-
 Variablen extern bereitstellen. Zusätzlich benötigt: `TF_VAR_opensearch_password`,
 `TF_VAR_opensearch_ca_file`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
 `AWS_SSE_CUSTOMER_KEY`, `AWS_CA_BUNDLE`. Backend-Zugänge und Recovery siehe
@@ -84,5 +84,5 @@ Die zuvor konfigurierte SOPS-Identität war ungültig und wurde nicht verändert
 Für die neue Sicherung die neue Identität ausdrücklich per SOPS_AGE_KEY_FILE wählen.
 Ein lokales Backup ersetzt kein Off-host-Backup; Schlüssel separat sichern.
 
-Aktuelle Sicherungen beider Mandanten und das Recovery-Verfahren stehen in
+Aktuelle Sicherungen des gemeinsamen Verwaltungs-States und das Recovery-Verfahren stehen in
 [remote-state.md](remote-state.md). Die obigen Angaben zur ersten Sicherung sind historisch.
