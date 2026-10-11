@@ -1,0 +1,256 @@
+{
+  "applied": false,
+  "temporaryDeclarationRemoved": true,
+  "egressAddresses": {
+    "worker1": "192.168.1.204",
+    "worker2": "192.168.1.205"
+  },
+  "changes": [
+    {
+      "address": "kubernetes_config_map_v1.argocd_rbac",
+      "actions": [
+        "update"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.argocd_project[\"mandant-c\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.logging_flow[\"mandant-c\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.logging_flow[\"platform\"]",
+      "actions": [
+        "update"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.logging_output[\"mandant-c\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.tenant_admission[\"namespaces\"]",
+      "actions": [
+        "update"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.tenant_admission[\"pods\"]",
+      "actions": [
+        "update"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.tenant_egress[\"mandant-c-worker1\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "kubernetes_manifest.tenant_egress[\"mandant-c-worker2\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "kubernetes_secret_v1.argocd_repository[\"mandant-c-7b3fa9f6d0\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "terraform_data.egress_address[\"mandant-c-worker1\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "terraform_data.egress_address[\"mandant-c-worker2\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "terraform_data.egress_allocations",
+      "actions": [
+        "update"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].harbor_group.access[\"admins\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].harbor_group.access[\"developers\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].harbor_project.tenant[0]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].harbor_project_member_group.access[\"admins\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].harbor_project_member_group.access[\"developers\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].keycloak_group.access[\"admins\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].keycloak_group.access[\"developers\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].keycloak_group.access[\"logs-readers\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].keycloak_group.tenant",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].kubernetes_cluster_role_binding_v1.tokenreview",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].kubernetes_manifest.secret_store",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].kubernetes_namespace_v1.environment[\"dev\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].kubernetes_namespace_v1.environment[\"prod\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].kubernetes_namespace_v1.environment[\"test\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].kubernetes_service_account_v1.eso",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].opensearch_dashboard_tenant.tenant",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].opensearch_role.logs",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].opensearch_roles_mapping.logs",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].rancher2_project.tenant",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].rancher2_project_role_template_binding.access[\"admins\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].rancher2_project_role_template_binding.access[\"developers\"]",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].rancher2_project_role_template_binding.members",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].vault_auth_backend.kubernetes",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].vault_kubernetes_auth_backend_config.cluster",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].vault_kubernetes_auth_backend_role.eso",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].vault_mount.secrets",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].vault_namespace.tenant",
+      "actions": [
+        "create"
+      ]
+    },
+    {
+      "address": "module.tenant[\"mandant-c\"].vault_policy.eso",
+      "actions": [
+        "create"
+      ]
+    }
+  ]
+}

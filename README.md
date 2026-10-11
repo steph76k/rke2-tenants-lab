@@ -57,6 +57,10 @@ im eigenen Rancher-Projekt erstellen. Egress, Logging und ESO erfassen sie autom
 über geschützte Projektlabels; kein zusätzlicher Apply oder Namespace-Import nötig.
 Details: [Namespace Self-Service](docs/namespace-self-service.md).
 
+Argo-CD-AppProjects, Repo-Freigaben und Admin-/Developer-Rechte entstehen ebenfalls
+über Terraform. Fachbereiche verwalten ihre Anwendungsmanifeste in eigenen Repositories.
+Anleitung und Grenzen: [Argo CD](docs/argocd.md).
+
 ## State und Lebenszyklus
 
 Alle Mandanten werden zentral in **einem** verschlüsselten State unter

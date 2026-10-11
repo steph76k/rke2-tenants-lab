@@ -1,0 +1,149 @@
+{
+  "pages": [
+    {
+      "host": "mandant-a-demo.berger.ph",
+      "httpStatus": 200,
+      "dnsAddress": "192.168.1.195",
+      "sha256": "95163dac40428151d02bc2192fbfa8265f5195d83d80b74e02b754da68080942",
+      "dnsHttpStatus": 200
+    },
+    {
+      "host": "mandant-b-demo.berger.ph",
+      "httpStatus": 200,
+      "dnsAddress": "192.168.1.195",
+      "sha256": "2567fa8bb2daa64872ab7d3dbe09db1fc06b1a202eca68d66b75922452da286b",
+      "dnsHttpStatus": 200
+    }
+  ],
+  "podConnectivity": [
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-a",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-1.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-a",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": false,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-1.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    },
+    {
+      "sourceTenant": "mandant-b",
+      "sourceNode": "rke2-cluster2-wk-2.berger.ph",
+      "targetTenant": "mandant-b",
+      "targetNode": "rke2-cluster2-wk-2.berger.ph",
+      "expectedAllowed": true,
+      "passed": true
+    }
+  ],
+  "temporaryResourcesCreated": false
+}

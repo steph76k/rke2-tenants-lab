@@ -11,5 +11,9 @@
   "egress_ips": {
     "worker1": "192.168.1.200",
     "worker2": "192.168.1.201"
-  }
+  },
+  "argocd_repositories": [
+    "https://github.com/steph76k/rke2-argocd-lab-mandant-a.git"
+  ],
+  "argocd_demo": true
 }
